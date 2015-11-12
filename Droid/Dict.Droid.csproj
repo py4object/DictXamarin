@@ -66,6 +66,10 @@
       <Project>{39A4F615-5B18-40B2-8029-95F3A0038986}</Project>
       <Name>Dict</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Compass.FilePicker\Compass.FilePicker.csproj">
+      <Project>{605F69AA-93A8-4AEA-9BBD-BF3AE649506A}</Project>
+      <Name>Compass.FilePicker</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />

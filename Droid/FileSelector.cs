@@ -1,4 +1,6 @@
 ﻿using System;
+using Dict;
+
 
 [assembly:Xamarin.Forms.Dependency(typeof(Dict.Droid.FileSelector))]
 namespace Dict.Droid
