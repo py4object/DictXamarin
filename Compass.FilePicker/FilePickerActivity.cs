@@ -20,6 +20,7 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Views;
+using Xamarin.Forms;
 
 namespace Compass.FilePicker
 {
@@ -88,6 +89,7 @@ namespace Compass.FilePicker
                         var intent = new Intent();
                         intent.PutExtra(ResultSelectedDir, path);
                         SetResult(Result.Ok, intent); // should be firstuser?
+                        MessagingCenter.Send<Page,string>(new Page(),"FilePicked",path);
                         Finish();
                     };
                 FragmentManager.BeginTransaction().Add(Resource.Id.filepicker_main, fragment).Commit();

@@ -34,17 +34,32 @@ namespace Dict
 					},
 					HistoryListView,
 					addDictBtn
+
 				}
 			};
 			this.SizeChanged += (object sender, EventArgs e) => {
 			wordToLookupEntry.WidthRequest=this.Width-lookUpBtn.Width;
+            MessagingCenter.Subscribe<Page, string>(new Page(), "FilePicked", (boo, arg) =>
+            {
+               
+
+            });
 
 		};
-			addDictBtn.Clicked+=(sender, e) => {
-				System.Diagnostics.Debug.WriteLine(DependencyService.Get<Dict.FileSlector>().getfilePath());
-			};
+            addDictBtn.Clicked += addBtnDict_Clicked;
 		
 		}
+
+        private void addBtnDict_Clicked(object sender, EventArgs e)
+        {
+            var asd = DependencyService.Get<Dict.FileSlector>();
+            var result = asd.getfilePath();
+
+           
+            var sdf = DependencyService.Get<Dict.FileSlector>().getfilePath();
+        }
+
+        
 
 	}
 }

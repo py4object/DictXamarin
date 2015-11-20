@@ -26,6 +26,65 @@ namespace Dict.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::Compass.FilePicker.Resource.Color.bright_blue = global::Dict.Droid.Resource.Color.bright_blue;
+			global::Compass.FilePicker.Resource.Color.custom_black = global::Dict.Droid.Resource.Color.custom_black;
+			global::Compass.FilePicker.Resource.Color.dark_red = global::Dict.Droid.Resource.Color.dark_red;
+			global::Compass.FilePicker.Resource.Color.dark_red_pressed = global::Dict.Droid.Resource.Color.dark_red_pressed;
+			global::Compass.FilePicker.Resource.Color.lightgraybackground = global::Dict.Droid.Resource.Color.lightgraybackground;
+			global::Compass.FilePicker.Resource.Color.selection_background_color = global::Dict.Droid.Resource.Color.selection_background_color;
+			global::Compass.FilePicker.Resource.Color.solid_blue = global::Dict.Droid.Resource.Color.solid_blue;
+			global::Compass.FilePicker.Resource.Color.solid_green = global::Dict.Droid.Resource.Color.solid_green;
+			global::Compass.FilePicker.Resource.Color.solid_red = global::Dict.Droid.Resource.Color.solid_red;
+			global::Compass.FilePicker.Resource.Color.solid_yellow = global::Dict.Droid.Resource.Color.solid_yellow;
+			global::Compass.FilePicker.Resource.Color.whitesmoke = global::Dict.Droid.Resource.Color.whitesmoke;
+			global::Compass.FilePicker.Resource.Drawable.blue = global::Dict.Droid.Resource.Drawable.blue;
+			global::Compass.FilePicker.Resource.Drawable.borderless_button = global::Dict.Droid.Resource.Drawable.borderless_button;
+			global::Compass.FilePicker.Resource.Drawable.filepicker_file = global::Dict.Droid.Resource.Drawable.filepicker_file;
+			global::Compass.FilePicker.Resource.Drawable.filepicker_folder = global::Dict.Droid.Resource.Drawable.filepicker_folder;
+			global::Compass.FilePicker.Resource.Drawable.filepicker_new_folder = global::Dict.Droid.Resource.Drawable.filepicker_new_folder;
+			global::Compass.FilePicker.Resource.Drawable.filepicker_previous = global::Dict.Droid.Resource.Drawable.filepicker_previous;
+			global::Compass.FilePicker.Resource.Drawable.green = global::Dict.Droid.Resource.Drawable.green;
+			global::Compass.FilePicker.Resource.Drawable.red = global::Dict.Droid.Resource.Drawable.red;
+			global::Compass.FilePicker.Resource.Drawable.screen_background_black = global::Dict.Droid.Resource.Drawable.screen_background_black;
+			global::Compass.FilePicker.Resource.Drawable.translucent_background = global::Dict.Droid.Resource.Drawable.translucent_background;
+			global::Compass.FilePicker.Resource.Drawable.transparent_background = global::Dict.Droid.Resource.Drawable.transparent_background;
+			global::Compass.FilePicker.Resource.Drawable.white = global::Dict.Droid.Resource.Drawable.white;
+			global::Compass.FilePicker.Resource.Drawable.yellow = global::Dict.Droid.Resource.Drawable.yellow;
+			global::Compass.FilePicker.Resource.Id.btnCancel = global::Dict.Droid.Resource.Id.btnCancel;
+			global::Compass.FilePicker.Resource.Id.btnConfirm = global::Dict.Droid.Resource.Id.btnConfirm;
+			global::Compass.FilePicker.Resource.Id.btnCreateFolder2 = global::Dict.Droid.Resource.Id.btnCreateFolder2;
+			global::Compass.FilePicker.Resource.Id.btnNavUp = global::Dict.Droid.Resource.Id.btnNavUp;
+			global::Compass.FilePicker.Resource.Id.directoryInfo = global::Dict.Droid.Resource.Id.directoryInfo;
+			global::Compass.FilePicker.Resource.Id.directoryList = global::Dict.Droid.Resource.Id.directoryList;
+			global::Compass.FilePicker.Resource.Id.divider = global::Dict.Droid.Resource.Id.divider;
+			global::Compass.FilePicker.Resource.Id.file_picker_image = global::Dict.Droid.Resource.Id.file_picker_image;
+			global::Compass.FilePicker.Resource.Id.file_picker_text = global::Dict.Droid.Resource.Id.file_picker_text;
+			global::Compass.FilePicker.Resource.Id.filepicker_main = global::Dict.Droid.Resource.Id.filepicker_main;
+			global::Compass.FilePicker.Resource.Id.filepicker_new_folder_item = global::Dict.Droid.Resource.Id.filepicker_new_folder_item;
+			global::Compass.FilePicker.Resource.Id.folderName = global::Dict.Droid.Resource.Id.folderName;
+			global::Compass.FilePicker.Resource.Id.footer = global::Dict.Droid.Resource.Id.footer;
+			global::Compass.FilePicker.Resource.Id.horizontalDivider = global::Dict.Droid.Resource.Id.horizontalDivider;
+			global::Compass.FilePicker.Resource.Id.txtvSelectedFolder = global::Dict.Droid.Resource.Id.txtvSelectedFolder;
+			global::Compass.FilePicker.Resource.Id.txtvSelectedFolderLabel = global::Dict.Droid.Resource.Id.txtvSelectedFolderLabel;
+			global::Compass.FilePicker.Resource.Layout.filepicker_createfolder = global::Dict.Droid.Resource.Layout.filepicker_createfolder;
+			global::Compass.FilePicker.Resource.Layout.filepicker_fragment = global::Dict.Droid.Resource.Layout.filepicker_fragment;
+			global::Compass.FilePicker.Resource.Layout.filepicker_listitem = global::Dict.Droid.Resource.Layout.filepicker_listitem;
+			global::Compass.FilePicker.Resource.Layout.filepicker_mainactivity = global::Dict.Droid.Resource.Layout.filepicker_mainactivity;
+			global::Compass.FilePicker.Resource.Menu.filepicker_menu = global::Dict.Droid.Resource.Menu.filepicker_menu;
+			global::Compass.FilePicker.Resource.String.filepicker_ApplicationName = global::Dict.Droid.Resource.String.filepicker_ApplicationName;
+			global::Compass.FilePicker.Resource.String.filepicker_cancel_label = global::Dict.Droid.Resource.String.filepicker_cancel_label;
+			global::Compass.FilePicker.Resource.String.filepicker_confirm_label = global::Dict.Droid.Resource.String.filepicker_confirm_label;
+			global::Compass.FilePicker.Resource.String.filepicker_create_folder_error = global::Dict.Droid.Resource.String.filepicker_create_folder_error;
+			global::Compass.FilePicker.Resource.String.filepicker_create_folder_error_already_exists = global::Dict.Droid.Resource.String.filepicker_create_folder_error_already_exists;
+			global::Compass.FilePicker.Resource.String.filepicker_create_folder_error_no_write_access = global::Dict.Droid.Resource.String.filepicker_create_folder_error_no_write_access;
+			global::Compass.FilePicker.Resource.String.filepicker_create_folder_label = global::Dict.Droid.Resource.String.filepicker_create_folder_label;
+			global::Compass.FilePicker.Resource.String.filepicker_create_folder_msg = global::Dict.Droid.Resource.String.filepicker_create_folder_msg;
+			global::Compass.FilePicker.Resource.String.filepicker_create_folder_success = global::Dict.Droid.Resource.String.filepicker_create_folder_success;
+			global::Compass.FilePicker.Resource.String.filepicker_enter_folder_msg = global::Dict.Droid.Resource.String.filepicker_enter_folder_msg;
+			global::Compass.FilePicker.Resource.String.filepicker_ok = global::Dict.Droid.Resource.String.filepicker_ok;
+			global::Compass.FilePicker.Resource.String.filepicker_selected_file_label = global::Dict.Droid.Resource.String.filepicker_selected_file_label;
+			global::Compass.FilePicker.Resource.String.filepicker_selected_folder_label = global::Dict.Droid.Resource.String.filepicker_selected_folder_label;
+			global::Compass.FilePicker.Resource.String.filepicker_up_label = global::Dict.Droid.Resource.String.filepicker_up_label;
 		}
 		
 		public partial class Attribute
@@ -41,11 +100,96 @@ namespace Dict.Droid
 			}
 		}
 		
+		public partial class Color
+		{
+			
+			// aapt resource value: 0x7f040009
+			public const int bright_blue = 2130968585;
+			
+			// aapt resource value: 0x7f040005
+			public const int custom_black = 2130968581;
+			
+			// aapt resource value: 0x7f040006
+			public const int dark_red = 2130968582;
+			
+			// aapt resource value: 0x7f040007
+			public const int dark_red_pressed = 2130968583;
+			
+			// aapt resource value: 0x7f040004
+			public const int lightgraybackground = 2130968580;
+			
+			// aapt resource value: 0x7f04000a
+			public const int selection_background_color = 2130968586;
+			
+			// aapt resource value: 0x7f040001
+			public const int solid_blue = 2130968577;
+			
+			// aapt resource value: 0x7f040002
+			public const int solid_green = 2130968578;
+			
+			// aapt resource value: 0x7f040000
+			public const int solid_red = 2130968576;
+			
+			// aapt resource value: 0x7f040003
+			public const int solid_yellow = 2130968579;
+			
+			// aapt resource value: 0x7f040008
+			public const int whitesmoke = 2130968584;
+			
+			static Color()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Color()
+			{
+			}
+		}
+		
 		public partial class Drawable
 		{
 			
+			// aapt resource value: 0x7f020007
+			public const int blue = 2130837511;
+			
 			// aapt resource value: 0x7f020000
-			public const int icon = 2130837504;
+			public const int borderless_button = 2130837504;
+			
+			// aapt resource value: 0x7f020001
+			public const int filepicker_file = 2130837505;
+			
+			// aapt resource value: 0x7f020002
+			public const int filepicker_folder = 2130837506;
+			
+			// aapt resource value: 0x7f020003
+			public const int filepicker_new_folder = 2130837507;
+			
+			// aapt resource value: 0x7f020004
+			public const int filepicker_previous = 2130837508;
+			
+			// aapt resource value: 0x7f020008
+			public const int green = 2130837512;
+			
+			// aapt resource value: 0x7f020005
+			public const int icon = 2130837509;
+			
+			// aapt resource value: 0x7f020006
+			public const int red = 2130837510;
+			
+			// aapt resource value: 0x7f02000b
+			public const int screen_background_black = 2130837515;
+			
+			// aapt resource value: 0x7f02000c
+			public const int translucent_background = 2130837516;
+			
+			// aapt resource value: 0x7f02000d
+			public const int transparent_background = 2130837517;
+			
+			// aapt resource value: 0x7f02000a
+			public const int white = 2130837514;
+			
+			// aapt resource value: 0x7f020009
+			public const int yellow = 2130837513;
 			
 			static Drawable()
 			{
@@ -53,6 +197,163 @@ namespace Dict.Droid
 			}
 			
 			private Drawable()
+			{
+			}
+		}
+		
+		public partial class Id
+		{
+			
+			// aapt resource value: 0x7f070003
+			public const int btnCancel = 2131165187;
+			
+			// aapt resource value: 0x7f070004
+			public const int btnConfirm = 2131165188;
+			
+			// aapt resource value: 0x7f070009
+			public const int btnCreateFolder2 = 2131165193;
+			
+			// aapt resource value: 0x7f070006
+			public const int btnNavUp = 2131165190;
+			
+			// aapt resource value: 0x7f070005
+			public const int directoryInfo = 2131165189;
+			
+			// aapt resource value: 0x7f07000b
+			public const int directoryList = 2131165195;
+			
+			// aapt resource value: 0x7f07000a
+			public const int divider = 2131165194;
+			
+			// aapt resource value: 0x7f07000c
+			public const int file_picker_image = 2131165196;
+			
+			// aapt resource value: 0x7f07000d
+			public const int file_picker_text = 2131165197;
+			
+			// aapt resource value: 0x7f07000e
+			public const int filepicker_main = 2131165198;
+			
+			// aapt resource value: 0x7f07000f
+			public const int filepicker_new_folder_item = 2131165199;
+			
+			// aapt resource value: 0x7f070000
+			public const int folderName = 2131165184;
+			
+			// aapt resource value: 0x7f070001
+			public const int footer = 2131165185;
+			
+			// aapt resource value: 0x7f070002
+			public const int horizontalDivider = 2131165186;
+			
+			// aapt resource value: 0x7f070008
+			public const int txtvSelectedFolder = 2131165192;
+			
+			// aapt resource value: 0x7f070007
+			public const int txtvSelectedFolderLabel = 2131165191;
+			
+			static Id()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Id()
+			{
+			}
+		}
+		
+		public partial class Layout
+		{
+			
+			// aapt resource value: 0x7f030000
+			public const int filepicker_createfolder = 2130903040;
+			
+			// aapt resource value: 0x7f030001
+			public const int filepicker_fragment = 2130903041;
+			
+			// aapt resource value: 0x7f030002
+			public const int filepicker_listitem = 2130903042;
+			
+			// aapt resource value: 0x7f030003
+			public const int filepicker_mainactivity = 2130903043;
+			
+			static Layout()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Layout()
+			{
+			}
+		}
+		
+		public partial class Menu
+		{
+			
+			// aapt resource value: 0x7f060000
+			public const int filepicker_menu = 2131099648;
+			
+			static Menu()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Menu()
+			{
+			}
+		}
+		
+		public partial class String
+		{
+			
+			// aapt resource value: 0x7f050000
+			public const int filepicker_ApplicationName = 2131034112;
+			
+			// aapt resource value: 0x7f050002
+			public const int filepicker_cancel_label = 2131034114;
+			
+			// aapt resource value: 0x7f050003
+			public const int filepicker_confirm_label = 2131034115;
+			
+			// aapt resource value: 0x7f05000c
+			public const int filepicker_create_folder_error = 2131034124;
+			
+			// aapt resource value: 0x7f05000b
+			public const int filepicker_create_folder_error_already_exists = 2131034123;
+			
+			// aapt resource value: 0x7f05000a
+			public const int filepicker_create_folder_error_no_write_access = 2131034122;
+			
+			// aapt resource value: 0x7f050006
+			public const int filepicker_create_folder_label = 2131034118;
+			
+			// aapt resource value: 0x7f050008
+			public const int filepicker_create_folder_msg = 2131034120;
+			
+			// aapt resource value: 0x7f050009
+			public const int filepicker_create_folder_success = 2131034121;
+			
+			// aapt resource value: 0x7f050007
+			public const int filepicker_enter_folder_msg = 2131034119;
+			
+			// aapt resource value: 0x7f050001
+			public const int filepicker_ok = 2131034113;
+			
+			// aapt resource value: 0x7f050005
+			public const int filepicker_selected_file_label = 2131034117;
+			
+			// aapt resource value: 0x7f050004
+			public const int filepicker_selected_folder_label = 2131034116;
+			
+			// aapt resource value: 0x7f05000d
+			public const int filepicker_up_label = 2131034125;
+			
+			static String()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private String()
 			{
 			}
 		}
