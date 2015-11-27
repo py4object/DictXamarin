@@ -4,7 +4,7 @@ namespace Dict
 {
 	public interface FileSlector
 	{
-		string getfilePath();
+		void getfilePath();
 
 	}
 }

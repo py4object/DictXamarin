@@ -13,7 +13,7 @@ namespace Dict.Droid
 {
 	public class FileSelector:Dict.FileSlector
 	{		
-		public string getfilePath ()
+		public void getfilePath ()
 		{
 			
 			var intent = new Intent(Forms.Context,typeof(FilePickerActivity));
@@ -23,9 +23,8 @@ namespace Dict.Droid
 			((Activity)Forms.Context).StartActivityForResult(intent, FilePickerActivity.ResultCodeDirSelected);
 
             
-            var result = FilePickerActivity.ResultSelectedDir;
 
-            return result;
+            
 
 		}
 
