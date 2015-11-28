@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BGLParser;
+using Dict.Modle;
+using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
 
@@ -48,38 +50,15 @@ namespace Dict
 						},
 
 					},
-					HistoryListView,
                     wv,
 					addDictBtn
 
 				}
+                
 			};
 			this.SizeChanged += (object sender, EventArgs e) => {
-			wordToLookupEntry.WidthRequest=this.Width-lookUpBtn.Width;
-            MessagingCenter.Subscribe<Page, string>(new Page(), "FilePicked", (boo, arg) =>
-            {
-                BGLParser.BGLParser p = new BGLParser.BGLParser();
-                System.IO.Stream s = p.open(arg);
-                p.parseMetaData(s);
-                p.closeStream(s);
-                s = p.open(arg);
-                BGLParser.BGLEntry entry;
-
-                while ((entry = p.readEntry(s)) != null)
-                {
-                    string he = entry.headword;
-                    if (he.IndexOf("$")!=-1)
-                    {
-                        he = he.Substring(0, he.IndexOf("$"));   
-                    }
-                    te[he] = entry.definition;
-                    
-                }
-
-                
-
-            });
-
+                wordToLookupEntry.WidthRequest = this.Width - lookUpBtn.Width;
+                wv.HeightRequest = this.Height - wordToLookupEntry.Height-addDictBtn.Height;
 		};
             addDictBtn.Clicked += addBtnDict_Clicked;
             lookUpBtn.Clicked += lookUpBtn_Clicked;
@@ -87,18 +66,19 @@ namespace Dict
 
         private void lookUpBtn_Clicked(object sender, EventArgs e)
         {
-            string def=null;
-            try
-            {
-                def = te[wordToLookupEntry.Text];
-               
-            }catch(KeyNotFoundException ){
 
 
-            }
-            if (!string.IsNullOrWhiteSpace(def))
+            List<BGLParser.BGLEntry> entrylist = DictonaryManager.Instance.getDefintion(wordToLookupEntry.Text.TrimEnd());
+            if (entrylist != null) 
             {
-                sr.Html = def;
+                sr.Html = "";
+                foreach(BGLEntry entry in entrylist){
+                    sr.Html += entry.definition +"<br>";
+                    foreach (string es in entry.alternates)
+                    {
+                        sr.Html += es + "<br>";
+                    }
+                }
                 wv.Source = sr;
             }
             
@@ -106,11 +86,8 @@ namespace Dict
 
         private void addBtnDict_Clicked(object sender, EventArgs e)
         {
-            var asd = DependencyService.Get<Dict.FileSlector>();
-          
-
+            DictonaryManager.Instance.addDictonary();
            
-             DependencyService.Get<Dict.FileSlector>().getfilePath();
         }
 
         
