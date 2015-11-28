@@ -137,6 +137,12 @@
   <ItemGroup>
     <AndroidResource Include="Resources\Drawable\filepicker_folder.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dict\Dict.csproj">
+      <Project>{39a4f615-5b18-40b2-8029-95f3a0038986}</Project>
+      <Name>Dict</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

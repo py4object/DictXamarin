@@ -44,7 +44,7 @@ namespace Dict.Droid
                 File.Delete(Path.Combine(path, FileName));
             }
             writer = new StreamWriter(File.Create(Path.Combine(path, FileName)));
-            
+           
             return writer;
         }
 

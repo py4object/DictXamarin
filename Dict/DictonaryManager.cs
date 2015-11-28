@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 using System.Collections;
 using Xamarin.Forms;
 using BGLParser;
-namespace Dict.Modle
+namespace Dict
 {
     
-    class DictonaryManager
+   public class DictonaryManager
     {
         private static DictonaryManager instance;
         public static DictonaryManager Instance
@@ -62,6 +62,11 @@ namespace Dict.Modle
 
 
             
+        }
+        public async void parseFile( string bglPath)
+        {
+            await ParseTheBGL(bglPath);
+
         }
 
         private async Task ParseTheBGL(string bglPath)

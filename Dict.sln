@@ -10,6 +10,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dict.UITests", "UITests\Dict.UITests.csproj", "{DBB989B8-B0EE-449D-B3A9-44D5F216FB69}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compass.FilePicker", "Compass.FilePicker\Compass.FilePicker.csproj", "{605F69AA-93A8-4AEA-9BBD-BF3AE649506A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{39A4F615-5B18-40B2-8029-95F3A0038986} = {39A4F615-5B18-40B2-8029-95F3A0038986}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
