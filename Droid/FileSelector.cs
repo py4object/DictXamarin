@@ -34,32 +34,8 @@ namespace Dict.Droid
         
 
 
-        public System.IO.StreamWriter getFileManagerStreamWriter()
-        {
-            StreamWriter writer;
-            string FileName = "XSADMCAWE.CSPOW";
-            string path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-            if (File.Exists(Path.Combine(path, FileName)))
-            {
-                File.Delete(Path.Combine(path, FileName));
-            }
-            writer = new StreamWriter(File.Create(Path.Combine(path, FileName)));
-           
-            return writer;
-        }
+     
 
-
-        public StreamReader getFileMangerStreamReader()
-        {
-            StreamReader reader;
-            string FileName = "XSADMCAWE.CSPOW";
-            string path = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal),FileName);
-            if (!File.Exists(path))
-                return null;
-            reader = new StreamReader(path);
-            return reader; ;
-            
-        }
 
 
         public void CloseStreamWirter(StreamWriter w)
@@ -70,6 +46,34 @@ namespace Dict.Droid
         public void CLoseStreamReader(StreamReader r)
         {
             r.Close();
+        }
+
+
+        public DictonaryManager LoadDictonaryManager()
+        {
+            string filename = "SACA.ASDQR";
+            string path = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), filename);
+            if(!File.Exists(path)){return null;}
+            using (Stream strem =File.Open(path,FileMode.Open))
+            {
+                var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                DictonaryManager dm = bformatter.Deserialize(strem) as DictonaryManager;
+                strem.Close();
+                return dm;
+              
+            }
+        }
+
+        public void saveDictionaryManager(DictonaryManager dm)
+        {
+            string filename = "SACA.ASDQR";
+            string path = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), filename);
+
+            using (Stream stream=File.Open(path,FileMode.Create)){
+                var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                bformatter.Serialize(stream, dm);
+                stream.Close();
+            }
         }
     }
 }

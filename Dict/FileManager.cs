@@ -7,9 +7,9 @@ namespace Dict
 	{
 		void getBglPath();
 
-        StreamWriter getFileManagerStreamWriter();
+         DictonaryManager LoadDictonaryManager();
 
-        StreamReader getFileMangerStreamReader();
+        void saveDictionaryManager(DictonaryManager dm);
 
         void CloseStreamWirter(StreamWriter w);
         void CLoseStreamReader(StreamReader r);

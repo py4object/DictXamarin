@@ -7,9 +7,12 @@ using System.Threading.Tasks;
 using System.Collections;
 using Xamarin.Forms;
 using BGLParser;
+using Dict.Pages;
+using System.Runtime.Serialization;
+
 namespace Dict
 {
-    
+     
    public class DictonaryManager
     {
         private static DictonaryManager instance;
@@ -71,61 +74,57 @@ namespace Dict
 
         private async Task ParseTheBGL(string bglPath)
         {
-
-            BGLParser.BGLParser parser = new BGLParser.BGLParser();
-            Stream o = parser.open(bglPath);
-            parser.parseMetaData(o);
-            parser.closeStream(o);
-            o = parser.open(bglPath);
-            BGLEntry entry;
-            while ((entry = parser.readEntry(o)) != null)
+            WaitPage wait = new WaitPage("");
+            await App.Current.MainPage.Navigation.PushModalAsync(wait);
+           await Task.Run(() =>
             {
-                if (entry.headword.IndexOf("$") > 0)
-                    entry.headword = entry.headword.Substring(0, entry.headword.IndexOf("$"));
-                try
+                
+                BGLParser.BGLParser parser = new BGLParser.BGLParser();
+                Stream o = parser.open(bglPath);
+                parser.parseMetaData(o);
+                parser.closeStream(o);
+                o = parser.open(bglPath);
+                BGLEntry entry;
+                while ((entry = parser.readEntry(o)) != null)
                 {
-                    List<BGLEntry> entryList = dict[entry.headword];
-                    entryList.Add(entry);
-                }
-                catch (KeyNotFoundException)
-                {
-                    List<BGLEntry> entryList = new List<BGLEntry>();
-                    entryList.Add(entry);
-                    dict[entry.headword] = entryList;
-                }
+                    if (entry.headword.IndexOf("$") > 0)
+                        entry.headword = entry.headword.Substring(0, entry.headword.IndexOf("$"));
+                    try
+                    {
+                        List<BGLEntry> entryList = dict[entry.headword];
+                        entryList.Add(entry);
+                    }
+                    catch (KeyNotFoundException)
+                    {
+                        List<BGLEntry> entryList = new List<BGLEntry>();
+                        entryList.Add(entry);
+                        dict[entry.headword] = entryList;
+                    }
 
-            }
-            writeDictonaryManager();
+                }
+                writeDictonaryManager();
+            });
+
+           wait.finish();
+          
         }
 #endregion
         #region -----Save and load the object
         private static DictonaryManager loadDictonaryManager()
         {
-            return null;
-          
-           StreamReader reader = Xamarin.Forms.DependencyService.Get<FileManager>().getFileMangerStreamReader();
-            {
-                if (reader==null)
-                    return null;
 
-                DictonaryManager e= Newtonsoft.Json.JsonConvert.DeserializeObject<DictonaryManager>(reader.ReadToEnd());
-                e.regiesterFileListiner();
-                DependencyService.Get<FileManager>().CLoseStreamReader(reader);
-                return e;
-            }
+            return null;
+           return  Xamarin.Forms.DependencyService.Get<FileManager>().LoadDictonaryManager();
+    
+         }
 
            
 
-        }
+        
         private void writeDictonaryManager()
         {
-            
-            StreamWriter writer = Xamarin.Forms.DependencyService.Get<FileManager>().getFileManagerStreamWriter();
-              writer.AutoFlush=true;
-                writer.Write(Newtonsoft.Json.JsonConvert.SerializeObject(Instance));
-                DependencyService.Get<FileManager>().CloseStreamWirter(writer);
-          
 
+         //   Xamarin.Forms.DependencyService.Get<FileManager>().saveDictionaryManager(Instance);
            
         }
         private void regiesterFileListiner()
