@@ -8,12 +8,15 @@ using Compass.FilePicker;
 using Xamarin.Forms;
 using Dict.Droid;
 using System.IO;
+using Newtonsoft.Json;
 
 [assembly:Xamarin.Forms.Dependency(typeof(FileSelector))]
 namespace Dict.Droid
 {
+   
 	public class FileSelector:Dict.FileManager
-	{		
+    {
+        private static string filename = "boo.json";
 		public void getBglPath ()
 		{
 			
@@ -51,28 +54,38 @@ namespace Dict.Droid
 
         public DictonaryManager LoadDictonaryManager()
         {
-            string filename = "SACA.ASDQR";
-            string path = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), filename);
-            if(!File.Exists(path)){return null;}
-            using (Stream strem =File.Open(path,FileMode.Open))
+            try
             {
-                var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-                DictonaryManager dm = bformatter.Deserialize(strem) as DictonaryManager;
-                strem.Close();
+                DictonaryManager dm = null;
+                string filepath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), filename);
+                using (StreamReader reader = new StreamReader(File.Open(filepath, FileMode.Open)))
+                {
+                    string bo = reader.ReadToEnd();
+                    dm = JsonConvert.DeserializeObject<DictonaryManager>(bo);
+
+                }
                 return dm;
-              
             }
+            catch (Exception)
+            {
+                return null;
+            }
+            
         }
 
         public void saveDictionaryManager(DictonaryManager dm)
         {
-            string filename = "SACA.ASDQR";
-            string path = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), filename);
 
-            using (Stream stream=File.Open(path,FileMode.Create)){
-                var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-                bformatter.Serialize(stream, dm);
-                stream.Close();
+            string filepath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), filename);
+            JsonSerializer serlizer = new JsonSerializer();
+            serlizer.NullValueHandling = NullValueHandling.Ignore;
+
+            using (StreamWriter writer = new StreamWriter(@filepath))
+            {
+                using (JsonWriter jwriter = new JsonTextWriter(writer))
+                {
+                    serlizer.Serialize(jwriter, dm);
+                }
             }
         }
     }

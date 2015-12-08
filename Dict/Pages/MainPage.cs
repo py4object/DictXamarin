@@ -2,94 +2,184 @@
 using Dict.Modle;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Xamarin.Forms;
+using System.Linq;
 
 namespace Dict
 {
+    
+    
 	public class MainPage : ContentPage
     {
-        Dictionary<string, string> te;
-        Entry wordToLookupEntry;
-        WebView wv;
-        HtmlWebViewSource sr;
-		public MainPage ()
-		{
-           te=new Dictionary<string,string>();
-           wv = new WebView()
-           {
-               Source = new HtmlWebViewSource()
-               {
-                   Html=@"<html>
-                       hoo</html>"
-               }
-           };
-           sr= new HtmlWebViewSource();
-			 wordToLookupEntry=new Entry{
-				Placeholder="Enter a word to look up"
-			};
-			Button addDictBtn=new Button{
-				Text="Add a new dict"
-			};
-			ListView HistoryListView=new ListView{
-			};
-			Button lookUpBtn=new Button{
-				Text="Look up a word"
-			};
+        #region ----fileds---
+        Entry wordToLookUpEntry;
+        Layout viewDief;
+        Layout viewHistory;
+        Button lookUp;
+        Button addDict;
+        WebView defintion;
+        ListView history;
+        int state=0;
+        RelativeLayout root;
+        #endregion
+
+
+        public MainPage()
+        {
+            history = new ListView();
+            history.ItemsSource = DictonaryManager.Instance.history;
+            defintion=new WebView();
+            wordToLookUpEntry = new Entry
+            {
+                Placeholder="Enter a word too look up"
+            };
+
+            addDict = new Button {
+                  Text="click to add a bgl Dictionary",
+            };
+
+            lookUp = new Button
+            {
+                Text="look up"
+            };
 
             
-			Content = new StackLayout { 
-				VerticalOptions = LayoutOptions.Center,
-				Children = {
-					new StackLayout {
-						Orientation = StackOrientation.Horizontal,
-						HorizontalOptions = LayoutOptions.StartAndExpand,
-						Children = {
-							wordToLookupEntry,
-							lookUpBtn,
+             root= new RelativeLayout { };
+            root.Children.Add(wordToLookUpEntry,Constraint.Constant(0),Constraint.Constant(0),
+               Constraint.RelativeToParent((parent)=>(parent.Width/3)*2.3));
+            root.Children.Add(lookUp, Constraint.RelativeToView(wordToLookUpEntry, (parnt, sibiling) => sibiling.X + sibiling.Width));
+            root.Children.Add(history, Constraint.Constant(0), Constraint.RelativeToView(wordToLookUpEntry, (parent, sibiling) => sibiling.Height + 2)
+                ,Constraint.RelativeToParent((parent)=>parent.Width),
+                Constraint.RelativeToView(wordToLookUpEntry,(parent,sibling)=>parent.Height-sibling.Height));
+            root.Children.Add(addDict,Constraint.RelativeToParent((parent)=>(parent.Width/2)-10)
+                ,Constraint.RelativeToParent((parent)=>parent.Height-parent.Height*0.1));
+            Content = root;
 
-						},
+            lookUp.Clicked += lookUp_Clicked;
+            addDict.Clicked += addDict_Clicked;
+            history.ItemTapped+=((sender,e)=>{
+               
+                if (state == 2)
+                {
+                    
 
-					},
-                    wv,
-					addDictBtn
+                    List<string> diHistory = DictonaryManager.Instance.history;
+                    if (!diHistory.Contains(e.Item as string)) diHistory.Add(e.Item as string);
 
-				}
-                
-			};
-			this.SizeChanged += (object sender, EventArgs e) => {
-                wordToLookupEntry.WidthRequest = this.Width - lookUpBtn.Width;
-                wv.HeightRequest = this.Height - wordToLookupEntry.Height-addDictBtn.Height;
-		};
-            addDictBtn.Clicked += addBtnDict_Clicked;
-            lookUpBtn.Clicked += lookUpBtn_Clicked;
-		}
+                }
+                lookupWord(e.Item as string);
+            });
+            wordToLookUpEntry.TextChanged += wordToLookUpEntry_TextChanged;
+        }
 
-        private void lookUpBtn_Clicked(object sender, EventArgs e)
+         void wordToLookUpEntry_TextChanged(object sender, TextChangedEventArgs e)
         {
+           
+             //Device.BeginInvokeOnMainThread(async() => {
+             // await System.Threading.Tasks.Task.Run(() =>
+             //    {
+             //        if (wordToLookUpEntry.Text != "")
+             //        {
+             //            List<string> allentries = DictonaryManager.Instance.allEntries;
+             //            List<string> possblie = (from l in allentries where l.StartsWith(wordToLookUpEntry.Text.ToLower()) select l).ToList();
+             //            if (possblie.Count > 0)
+             //            {
+             //                state = 2;
+             //                history.ItemsSource = possblie;
+             //            }
+             //        }
+             //    });
+
+             //   });
+
+                
+          }
+        
 
 
-            List<BGLParser.BGLEntry> entrylist = DictonaryManager.Instance.getDefintion(wordToLookupEntry.Text.TrimEnd());
-            if (entrylist != null) 
+        void addDict_Clicked(object sender, EventArgs e)
+        {
+            DictonaryManager.Instance.addDictonary();
+        }
+
+        void lookUp_Clicked(object sender, EventArgs e)
+        {
+            string word = wordToLookUpEntry.Text;
+            word = word.TrimEnd().ToLower();
+            
+            if (lookupWord(word))
             {
-                sr.Html = "";
-                foreach(BGLEntry entry in entrylist){
-                    sr.Html += entry.definition +"<br>";
-                    foreach (string es in entry.alternates)
+                List<string> diHistory = DictonaryManager.Instance.history;
+                if (!diHistory.Contains(word)) diHistory.Add(word);
+            }
+        }
+
+        bool  lookupWord(string word)
+        {
+            HtmlWebViewSource resultsource = new HtmlWebViewSource();
+            
+            List<BGLEntry> result = DictonaryManager.Instance.getDefintion(word);
+            bool funresult;
+            if (result == null)
+            {
+                resultsource.Html = "<h1>No result</h1>";
+                funresult=false;
+            }
+            else
+            {
+                funresult=true;
+                resultsource.Html = "<h1>" + word.ToUpper() + "</h1><br>";
+                foreach (BGLEntry s in result)
+                {
+                    resultsource.Html += "<h4>" + s.definition + "</h4><br>";
+                    foreach (var d in s.alternates)
                     {
-                        sr.Html += es + "<br>";
+                        resultsource.Html += "<h4>" + d + "</h4><br>";
                     }
                 }
-                wv.Source = sr;
             }
-            
+                defintion.Source = resultsource;
+                if (state == 0||state==2)
+                {
+                    root.Children.Remove(history);
+                    root.Children.Add(defintion, Constraint.Constant(0), Constraint.RelativeToView(wordToLookUpEntry, (parent, sibiling) => sibiling.Height + 2)
+                , Constraint.RelativeToParent((parent) => parent.Width),
+                Constraint.RelativeToView(wordToLookUpEntry, (parent, sibling) => parent.Height - sibling.Height));
+                    state = 1;
+                    
+                }
+                return funresult;
         }
+
+        
+
+       
+    
 
         private void addBtnDict_Clicked(object sender, EventArgs e)
         {
-            DictonaryManager.Instance.addDictonary();
-           
+          //  DictonaryManager.Instance.addDictonary();
+            Device.BeginInvokeOnMainThread(() =>
+            {
+               
+            });
         }
-
+        protected override bool OnBackButtonPressed()
+        {
+            if (state == 0)
+                return false;
+            else
+            {
+                history.ItemsSource = DictonaryManager.Instance.history;
+                root.Children.Remove(defintion);
+                root.Children.Add(history, Constraint.Constant(0), Constraint.RelativeToView(wordToLookUpEntry, (parent, sibiling) => sibiling.Height + 2)
+                , Constraint.RelativeToParent((parent) => parent.Width),
+                Constraint.RelativeToView(wordToLookUpEntry, (parent, sibling) => parent.Height - sibling.Height));
+                state = 0;
+                return true;
+            }
+        }
         
 
 	}

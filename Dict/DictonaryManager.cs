@@ -16,6 +16,8 @@ namespace Dict
    public class DictonaryManager
     {
         private static DictonaryManager instance;
+        public List<string> history { get; private set; }
+        public List<string> allEntries { get; private set; }
         public static DictonaryManager Instance
         {
             get
@@ -30,12 +32,15 @@ namespace Dict
             }
         }
 
-        private Dictionary<string, List<BGLEntry>> dict;
+        public Dictionary<string, List<BGLEntry>> dict;//should be private ,it's temprory public so json can serlize it 
         
         public DictonaryManager()
         {
             regiesterFileListiner();
+            allEntries=new List<string>();
             dict = new Dictionary<string, List<BGLParser.BGLEntry>>();
+            history = new List<string>();
+            
         }
 
 
@@ -99,6 +104,7 @@ namespace Dict
                         List<BGLEntry> entryList = new List<BGLEntry>();
                         entryList.Add(entry);
                         dict[entry.headword] = entryList;
+                        allEntries.Add(entry.headword);
                     }
 
                 }
@@ -113,9 +119,9 @@ namespace Dict
         private static DictonaryManager loadDictonaryManager()
         {
 
-            return null;
-           return  Xamarin.Forms.DependencyService.Get<FileManager>().LoadDictonaryManager();
-    
+           var dm= Xamarin.Forms.DependencyService.Get<FileManager>().LoadDictonaryManager();
+
+           return dm;
          }
 
            
@@ -124,12 +130,12 @@ namespace Dict
         private void writeDictonaryManager()
         {
 
-         //   Xamarin.Forms.DependencyService.Get<FileManager>().saveDictionaryManager(Instance);
+            Xamarin.Forms.DependencyService.Get<FileManager>().saveDictionaryManager(Instance);
            
         }
         private void regiesterFileListiner()
         {
-            //MessagingCenter.Subscribe<Page, string>(new Page(), "FilePicked", parseFile);
+            MessagingCenter.Subscribe<Page, string>(new Page(), "FilePicked", parseFile);
         }
 
          
