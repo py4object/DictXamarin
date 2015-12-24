@@ -129,7 +129,7 @@ namespace Dict
         private void writeDictonaryManager()
         {
 
-            Xamarin.Forms.DependencyService.Get<mbox >().saveDictionaryManager(Instance);
+            Xamarin.Forms.DependencyService.Get<FileManager >().saveDictionaryManager(Instance);
            
         }
         private void regiesterFileListiner()
