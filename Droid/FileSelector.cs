@@ -79,7 +79,7 @@ namespace Dict.Droid
             string filepath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), filename);
             JsonSerializer serlizer = new JsonSerializer();
             serlizer.NullValueHandling = NullValueHandling.Ignore;
-
+                
             using (StreamWriter writer = new StreamWriter(@filepath))
             {
                 using (JsonWriter jwriter = new JsonTextWriter(writer))

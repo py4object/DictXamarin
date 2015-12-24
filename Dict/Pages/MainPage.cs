@@ -27,6 +27,7 @@ namespace Dict
 
         public MainPage()
         {
+            
             history = new ListView();
             history.ItemsSource = DictonaryManager.Instance.history;
             defintion=new WebView();

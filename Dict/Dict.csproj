@@ -33,6 +33,10 @@
     <Compile Include="Dict.cs" />
     <Compile Include="DictonaryManager.cs" />
     <Compile Include="Modle\Dictonary.cs" />
+    <Compile Include="Pages\MasterPage.cs" />
+    <Compile Include="Pages\rootPage.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Pages\WaitPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BGLParser\BGLEntry.cs" />

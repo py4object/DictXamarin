@@ -118,7 +118,6 @@ namespace Dict
         #region -----Save and load the object
         private static DictonaryManager loadDictonaryManager()
         {
-
            var dm= Xamarin.Forms.DependencyService.Get<FileManager>().LoadDictonaryManager();
 
            return dm;
@@ -130,7 +129,7 @@ namespace Dict
         private void writeDictonaryManager()
         {
 
-            Xamarin.Forms.DependencyService.Get<FileManager>().saveDictionaryManager(Instance);
+            Xamarin.Forms.DependencyService.Get<mbox >().saveDictionaryManager(Instance);
            
         }
         private void regiesterFileListiner()
