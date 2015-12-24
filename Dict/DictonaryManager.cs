@@ -130,7 +130,7 @@ namespace Dict
         {
 
             Xamarin.Forms.DependencyService.Get<FileManager >().saveDictionaryManager(Instance);
-           
+         //asd  
         }
         private void regiesterFileListiner()
         {
