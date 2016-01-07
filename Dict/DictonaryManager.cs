@@ -94,6 +94,10 @@ namespace Dict
                 {
                     if (entry.headword.IndexOf("$") > 0)
                         entry.headword = entry.headword.Substring(0, entry.headword.IndexOf("$"));
+
+
+                  
+                    
                     try
                     {
                         List<BGLEntry> entryList = dict[entry.headword];
@@ -105,6 +109,7 @@ namespace Dict
                         entryList.Add(entry);
                         dict[entry.headword] = entryList;
                         allEntries.Add(entry.headword);
+
                     }
 
                 }
@@ -129,7 +134,7 @@ namespace Dict
         private void writeDictonaryManager()
         {
 
-            Xamarin.Forms.DependencyService.Get<FileManager >().saveDictionaryManager(Instance);
+            Xamarin.Forms.DependencyService.Get<FileManager>().saveDictionaryManager(Instance);
          //asd  
         }
         private void regiesterFileListiner()

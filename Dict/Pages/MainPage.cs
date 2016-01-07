@@ -17,7 +17,7 @@ namespace Dict
         Layout viewDief;
         Layout viewHistory;
         Button lookUp;
-        Button addDict;
+      
         WebView defintion;
         ListView history;
         int state=0;
@@ -36,9 +36,7 @@ namespace Dict
                 Placeholder="Enter a word too look up"
             };
 
-            addDict = new Button {
-                  Text="click to add a bgl Dictionary",
-            };
+            
 
             lookUp = new Button
             {
@@ -53,12 +51,11 @@ namespace Dict
             root.Children.Add(history, Constraint.Constant(0), Constraint.RelativeToView(wordToLookUpEntry, (parent, sibiling) => sibiling.Height + 2)
                 ,Constraint.RelativeToParent((parent)=>parent.Width),
                 Constraint.RelativeToView(wordToLookUpEntry,(parent,sibling)=>parent.Height-sibling.Height));
-            root.Children.Add(addDict,Constraint.RelativeToParent((parent)=>(parent.Width/2)-10)
-                ,Constraint.RelativeToParent((parent)=>parent.Height-parent.Height*0.1));
+          
             Content = root;
 
             lookUp.Clicked += lookUp_Clicked;
-            addDict.Clicked += addDict_Clicked;
+            
             history.ItemTapped+=((sender,e)=>{
                
                 if (state == 2)
@@ -99,10 +96,7 @@ namespace Dict
         
 
 
-        void addDict_Clicked(object sender, EventArgs e)
-        {
-            DictonaryManager.Instance.addDictonary();
-        }
+      
 
         void lookUp_Clicked(object sender, EventArgs e)
         {

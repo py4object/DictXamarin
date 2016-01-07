@@ -10,12 +10,13 @@ namespace Dict.Pages
 {
     public class MasterPage : ContentPage
     {
+        ListView lv;
        
         public MasterPage()
         
         {
             this.Title = "Stuff";
-            ListView lv = new ListView
+             lv = new ListView
             {
 
             };
@@ -32,6 +33,7 @@ namespace Dict.Pages
 
         private void addict(object sender, ItemTappedEventArgs e)
         {
+          
             DictonaryManager.Instance.addDictonary();
         }
     }
