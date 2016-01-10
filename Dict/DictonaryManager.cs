@@ -9,6 +9,7 @@ using Xamarin.Forms;
 using BGLParser;
 using Dict.Pages;
 using System.Runtime.Serialization;
+using Dict.Modle;
 
 namespace Dict
 {
@@ -32,13 +33,13 @@ namespace Dict
             }
         }
 
-        public Dictionary<string, List<BGLEntry>> dict;//should be private ,it's temprory public so json can serlize it 
+      public  List<Dictonary> dicts;   //should be private ,it's temprory public so json can serlize it 
         
         public DictonaryManager()
         {
             regiesterFileListiner();
             allEntries=new List<string>();
-            dict = new Dictionary<string, List<BGLParser.BGLEntry>>();
+            dicts = new List<Dictonary>();
             history = new List<string>();
             
         }
@@ -46,14 +47,19 @@ namespace Dict
 
         public List<BGLEntry> getDefintion(string word)
         {
-            try
-            {
-                return dict[word];
-            }
-            catch (KeyNotFoundException)
-            {
-                return null;
-            }
+            List<BGLEntry> entryes = new List<BGLEntry>();
+           
+                foreach(var d in dicts){
+                     try
+                     {
+                    entryes.Add(d.dict[word]);
+                     }catch(Exception ){
+
+                     }
+                }
+                if (entryes.Count == 0)
+                    return null;
+                return entryes;
         }
         #region Adding and parsing the bgl file
         public bool addDictonary()
@@ -90,25 +96,26 @@ namespace Dict
                 parser.closeStream(o);
                 o = parser.open(bglPath);
                 BGLEntry entry;
+                Dictonary d = new Dictonary();
+                dicts.Add(d);
+                d.dict=new Dictionary<string,BGLEntry>();
                 while ((entry = parser.readEntry(o)) != null)
                 {
                     if (entry.headword.IndexOf("$") > 0)
                         entry.headword = entry.headword.Substring(0, entry.headword.IndexOf("$"));
-
+                    if (entry.definition.IndexOf("3Pu<charset c=T>02D0;</charset>d") > 0)
+                    {
+                        entry.definition = entry.definition.Remove(entry.definition.LastIndexOf("3Pu<charset c=T>02D0;</charset>d"));
+                    }
 
                   
                     
                     try
                     {
-                        List<BGLEntry> entryList = dict[entry.headword];
-                        entryList.Add(entry);
+                        d.dict[entry.headword] = entry;
                     }
                     catch (KeyNotFoundException)
                     {
-                        List<BGLEntry> entryList = new List<BGLEntry>();
-                        entryList.Add(entry);
-                        dict[entry.headword] = entryList;
-                        allEntries.Add(entry.headword);
 
                     }
 

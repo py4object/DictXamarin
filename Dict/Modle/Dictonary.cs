@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dict.Modle
 {
-    class Dictonary
+   public class Dictonary
     {
         public string sourceCharset { private set; get; }
         public string targetCharset { private set; get; }
@@ -14,6 +14,6 @@ namespace Dict.Modle
         public string sourceLanguage { private set; get; }
         public string targetLanguage { private set; get; }
         public string title { private set; get; }
-        //not ended
+       public  Dictionary<string, BGLParser.BGLEntry> dict { set; get; }
     }
 }

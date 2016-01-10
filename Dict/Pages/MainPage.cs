@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Xamarin.Forms;
 using System.Linq;
+using System.Text;
 
 namespace Dict
 {
@@ -69,6 +70,40 @@ namespace Dict
                 lookupWord(e.Item as string);
             });
             wordToLookUpEntry.TextChanged += wordToLookUpEntry_TextChanged;
+           defintion.Navigating+=defintion_Navigating;
+        }
+
+        private void defintion_Navigating(object sender, WebNavigatingEventArgs e)
+        {
+            e.Cancel = true;
+            string d = e.Url.Substring("http://".Length);
+            d = PCLWebUtility.WebUtility.UrlDecode(d);
+            var s = d.Split(',');
+            int i = Int16.Parse(s[0]);
+            int j = Int16.Parse(s[1].Remove(s[1].IndexOf("/")));
+            string word = wordToLookUpEntry.Text;
+            word = word.TrimEnd().ToLower();
+           var dd= DictonaryManager.Instance.getDefintion(word);
+           if (dd != null)
+           {
+               try
+               {
+                   var f = dd[i].definition.Split(' ');
+                   wordToLookUpEntry.Text = f[j].Remove(f[j].IndexOf(","));
+                   lookupWord(f[j].Remove(f[j].IndexOf(",")));
+               }
+               catch (Exception)
+               {
+                   
+               }
+           }
+           else
+           {
+               HtmlWebViewSource resultsource = new HtmlWebViewSource();
+               resultsource.Html = "<h1>No result</h1>";
+               defintion.Source = resultsource;
+           }
+            
         }
 
          void wordToLookUpEntry_TextChanged(object sender, TextChangedEventArgs e)
@@ -125,12 +160,20 @@ namespace Dict
             {
                 funresult=true;
                 resultsource.Html = "<h1>" + word.ToUpper() + "</h1><br>";
-                foreach (BGLEntry s in result)
+                for (int i = 0; i < result.Count;i++ )
                 {
-                    resultsource.Html += "<h4>" + s.definition + "</h4><br>";
-                    foreach (var d in s.alternates)
+                    var s = result[i]; 
+                    string dd = s.definition;
+                    var x = dd.Split(' ');
+                    for (int j = 0; j < x.Length; j++)
                     {
-                        resultsource.Html += "<h4>" + d + "</h4><br>";
+                        string l = x[j];
+                        resultsource.Html += "<h4> <a href=\"http://" +i+ ","+j + "\">" + l + "  </h4>";
+                    }
+                    for (int j = 0; j < s.alternates.Count; j++)
+                    {
+                        string d = s.alternates[i];
+                        resultsource.Html += "<h4> <a href=\"http://" + i + "," + j + "\">" + d + "  </h4>";
                     }
                 }
             }

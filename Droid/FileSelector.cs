@@ -57,7 +57,7 @@ namespace Dict.Droid
             try
             {
                 DictonaryManager dm = null;
-                string filepath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), filename);
+                 string filepath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), filename);
                 using (StreamReader reader = new StreamReader(File.Open(filepath, FileMode.Open)))
                 {
                     string bo = reader.ReadToEnd();
